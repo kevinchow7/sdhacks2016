@@ -10,7 +10,7 @@ declare var $:JqueryStatic;
 })
 export class AppComponent {
   ngAfterViewInit() {
-    $("#test").hide();
+    //$("#test").hide();
 
   }
 }
