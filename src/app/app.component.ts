@@ -18,19 +18,22 @@ export class AppComponent {
       var phone = $(this).find('#fieldPhone').val();
       $(this).html("Congratuations! Your number " + phone + " has been processed.");
 
-       // Send a request to the server with the message dest/contents.
-       $.ajax({
-         url: 'http://localhost:3000/sms',
-         method: 'POST',
-         data: {
-           num: phone,
-           msg: 'you nerd'
-         }
-       });
-      
-      location
-
-
+      // Send a request to the server with the message dest/contents.
+      var text = function(number, mesg, cTime) {
+        $.ajax({
+            url: 'http://localhost:3000/sms',
+            method: 'POST',
+            data: {
+                num: number,
+                msg: mesg + "\nButton clicked: " + cTime + "\nText sent: " + new Date().toTimeString()
+            }
+        });
+        console.log('did it work..?')
+      }
+      var clickTime = new Date().toTimeString()
+      //Set timer for 2 hoursand 45 minutes
+      var myVar = setTimeout(function() { text(phone, "Here's your reminder!", clickTime) }, 60000);
+      //clearTimeout(myVar);
     });
   }
 }
