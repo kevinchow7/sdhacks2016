@@ -19,20 +19,24 @@ export class AppComponent {
       $(this).html("Congratuations! Your number " + phone + " has been processed.");
 
       // Send a request to the server with the message dest/contents.
-      var text = function(number, mesg, cTime) {
+      var text = function(number, mesg) {
         $.ajax({
             url: 'http://localhost:3000/sms',
             method: 'POST',
             data: {
                 num: number,
-                msg: mesg + "\nButton clicked: " + cTime + "\nText sent: " + new Date().toTimeString()
+                msg: mesg
             }
         });
         console.log('did it work..?')
       }
+
       var clickTime = new Date().toTimeString()
+      text(phone, 
+        "Got your request! \nCurrent time: " + clickTime + "\nWe'll remind you in 60 seconds!");
       //Set timer for 2 hoursand 45 minutes
-      var myVar = setTimeout(function() { text(phone, "Here's your reminder!", clickTime) }, 60000);
+      var myVar = setTimeout(function() { text(phone, 
+        "Here's your reminder! \nButton clicked: " + clickTime + "\nText sent: " + new Date().toTimeString()) }, 60000);
       //clearTimeout(myVar);
     });
   }
