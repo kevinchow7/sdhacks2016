@@ -1,6 +1,6 @@
 /// <reference path="../typings/globals/jquery/index.d.ts"/>
 import { Component } from '@angular/core';
-declare var $:JqueryStatic;
+//declare var $:JqueryStatic;
 
 
 @Component({
@@ -14,7 +14,7 @@ export class AppComponent {
       console.log("success");
       evt.preventDefault(); 
       var phone = $(this).find('#fieldPhone').val();
-      $(this).html("Congratuation! Your number " + phone + " has been processed.")
+      $(this).html("Congratuations! Your number " + phone + " has been processed.")
 
     });
 
