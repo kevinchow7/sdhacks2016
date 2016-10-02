@@ -22,42 +22,24 @@ export class AppComponent {
       $(this).html("Congratuations! Your number " + phone + " has been processed.");
 
       // Send a request to the server with the message dest/contents.
-      var text = function(number, mesg, cTime) {
+      var text = function(number, mesg) {
         $.ajax({
             url: 'http://localhost:3000/sms',
             method: 'POST',
             data: {
                 num: number,
-                msg: mesg + "\nButton clicked: " + cTime + "\nText sent: " + new Date().toTimeString()
+                msg: mesg
             }
         });
       }
+
       var clickTime = new Date().toTimeString()
+      text(phone, 
+        "Got your request! \nCurrent time: " + clickTime + "\nWe'll remind you in 60 seconds!");
       //Set timer for 2 hoursand 45 minutes
-      var myVar = setTimeout(function() { text(phone, "Here's your reminder!", clickTime) }, 60000);
+      var myVar = setTimeout(function() { text(phone, 
+        "Here's your reminder! \nButton clicked: " + clickTime + "\nText sent: " + new Date().toTimeString()) }, 60000);
       //clearTimeout(myVar);
     });
-    
-    var num = 1 
-    $(document).ready(function(){
-
-      $("#nav-toggle").click(function(){
-        num += 1 
-        $("#nav-toggle").toggleClass("active");
-        if(num%2==0){
-          $("#additionalFeatures").css("width", "50%");
-          $("#features").show();
-          //$("#main").css("marginLeft", "50%");
-          // $("#content").css("backgroundColor", "rgba(0,0,0,0.5)");
-        }
-        else{
-          $("#additionalFeatures").css("width", "0%");
-          $("#features").hide();
-          //$("#main").css("marginLeft", "0%");
-
-        }
-      });
-    })
-
   }
 }
