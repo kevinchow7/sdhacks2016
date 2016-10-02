@@ -10,16 +10,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   ngAfterViewInit() {
-    var phone; 
-    var mesg; 
+    var phone;
+    var mesg;
 
     $('form').on('submit', function(evt){
       console.log("success");
-      evt.preventDefault(); 
-      var phone = $(this).find('#fieldPhone').val();
+      evt.preventDefault();
+      var phones = $(this).find('#fieldPhone').val().replace(' ','').split(',');
       var mesg = $(this).find('#time').val();
 
-      $(this).html("Congratuations! Your number " + phone + " has been processed.");
+      $(this).html("Congratuations! Your request has been processed. You will receive a confirmation message shortly.");
 
       // Send a request to the server with the message dest/contents.
       var text = function(number, mesg) {
@@ -34,12 +34,37 @@ export class AppComponent {
       }
 
       var clickTime = new Date().toTimeString()
-      text(phone, 
-        "Got your request! \nCurrent time: " + clickTime + "\nWe'll remind you in 60 seconds!");
-      //Set timer for 2 hoursand 45 minutes
-      var myVar = setTimeout(function() { text(phone, 
-        "Here's your reminder! \nButton clicked: " + clickTime + "\nText sent: " + new Date().toTimeString()) }, 60000);
+      console.log(phones);
+      for (let phone of phones) {
+          console.log(phone);
+          text(phone,
+            "Got your request! \nCurrent time: " + clickTime + "\nWe'll remind you in 5 seconds!");
+          //Set timer for 2 hoursand 45 minutes
+          setTimeout(function() { text(phone,
+            "Here's your reminder! \nButton clicked: " + clickTime + "\nText sent: " + new Date().toTimeString()) }, 5000);
+      }
       //clearTimeout(myVar);
     });
+
+    var num = 1;
+    $(document).ready(function(){
+
+      $("#nav-toggle").click(function(){
+        num += 1;
+        $("#nav-toggle").toggleClass("active");
+        if(num%2==0){
+          $("#additionalFeatures").css("width", "50%");
+          $("#features").show();
+          //$("#main").css("marginLeft", "50%");
+          // $("#content").css("backgroundColor", "rgba(0,0,0,0.5)");
+        }
+        else{
+          $("#additionalFeatures").css("width", "0%");
+          $("#features").hide();
+          //$("#main").css("marginLeft", "0%");
+
+        }
+      });
+    })
   }
 }
