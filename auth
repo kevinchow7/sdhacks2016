@@ -1,0 +1,1 @@
+curl -G https://api.twilio.com/2010-04-01 -u 'AC4a97f9b1e74267f8fe528e2eb12499a0:0de58650d5c6e19cfc1dea817942ecce'

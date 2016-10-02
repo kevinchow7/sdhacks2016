@@ -20,5 +20,15 @@ export class AppComponent {
 
     //$("#test").hide();
 
+    // Send a request to the server with the message dest/contents.
+    $.ajax({
+        url: 'http://localhost:3000/sms',
+        method: 'POST',
+        data: {
+            num: '<YOUR NUMBER HERE>',
+            msg: '<YOUR MESSAGE HERE>'
+        }
+    });
+
   }
 }
