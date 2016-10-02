@@ -10,6 +10,14 @@ declare var $:JqueryStatic;
 })
 export class AppComponent {
   ngAfterViewInit() {
+    $('form').on('submit', function(evt){
+      console.log("success");
+      evt.preventDefault(); 
+      var phone = $(this).find('#fieldPhone').val();
+      $(this).html("Congratuation! Your number " + phone + " has been processed.")
+
+    });
+
     //$("#test").hide();
 
   }
