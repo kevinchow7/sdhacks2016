@@ -7,8 +7,8 @@ server.use(bodyParser.urlencoded({extended: true}));
 server.use(bodyParser.json());
 
 // Twilio
-var accid = '<YOUR ACCOUNT SID>';
-var auth = '<YOUR AUTH TOKEN>';
+var accid = 'AC4a97f9b1e74267f8fe528e2eb12499a0';
+var auth = '0de58650d5c6e19cfc1dea817942ecce';
 var client = require('twilio')(accid, auth);
 
 // Helper function for sending text messages.

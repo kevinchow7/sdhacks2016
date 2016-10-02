@@ -10,25 +10,27 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   ngAfterViewInit() {
+    var phone; 
+
     $('form').on('submit', function(evt){
       console.log("success");
       evt.preventDefault(); 
       var phone = $(this).find('#fieldPhone').val();
-      $(this).html("Congratuations! Your number " + phone + " has been processed.")
+      $(this).html("Congratuations! Your number " + phone + " has been processed.");
+
+       // Send a request to the server with the message dest/contents.
+       $.ajax({
+         url: 'http://localhost:3000/sms',
+         method: 'POST',
+         data: {
+           num: phone,
+           msg: 'you nerd'
+         }
+       });
+      
+      location
+
 
     });
-
-    //$("#test").hide();
-
-    // Send a request to the server with the message dest/contents.
-    $.ajax({
-        url: 'http://localhost:3000/sms',
-        method: 'POST',
-        data: {
-            num: '<YOUR NUMBER HERE>',
-            msg: '<YOUR MESSAGE HERE>'
-        }
-    });
-
   }
 }
